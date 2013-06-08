@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	$("#chatTextForm").submit(function(){
 		var chatText = $("#chatTextInput").val();
-		alert(chatText);
+		//alert(chatText);
 
 		//reload chat window
 		var jqXHR = $.ajax("/chat")
