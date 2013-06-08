@@ -1,5 +1,5 @@
-$(document).ready(function{
-	$("button").click(function{
-		$("#chatArea").hide();
+$(document).ready(function(){
+	$("#chatArea").click(function(){
+		$(this).hide();
 	});
 });
