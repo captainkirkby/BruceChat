@@ -33,15 +33,15 @@ app.get("/about", function(req, res){
 
 app.get("/hello/:who", function(req, res){
     res.end("Hello " + req.params.who + ".");
-})
+});
 
 app.get("/chat", function(req, res){
     fs.readFile("chatText.chat", function(readErr, data){
         if(readErr) throw readErr;
         res.end(data);
     })
-})
-
+});
+/**
 app.post("/chat", function(req, res){
     console.log(JSON.stringify(req.body));
     fs.appendFile("chatText.chat", req.body.message + "\n", function(writeErr){
@@ -51,8 +51,8 @@ app.post("/chat", function(req, res){
             res.end(data);
         })
     })
-})
-
+});
+**/
 app.get("*", function(req, res){
     res.end("404!");
 });

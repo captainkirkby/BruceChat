@@ -6,8 +6,11 @@ $(document).ready(function(){
 
 	$("#chatTextForm").submit(function(){
 		alert($("#chatTextInput").val());
-		
-		return true;
+		//reload chat window
+		//send this data back to the server
+		//reset chatTextInput text
+		$("#chatTextInput").val("");
+		return false;
 	});
 
 	//reloads the chat area
