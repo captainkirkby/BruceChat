@@ -1,4 +1,5 @@
 var express = require("express");
+var fs = require("fs");
 
 var app = express();
 
@@ -27,8 +28,13 @@ app.get("/hello/:who", function(req, res){
 
 app.post("/chat", function(req, res){
     console.log(JSON.stringify(req.body));
-    
-    res.end(req.body.message);
+    fs.appendFile("chatText.chat", req.body.message + "\n", function(writeErr){
+        if(writeErr) throw writeErr;
+        fs.readFile("chatText.chat", function(readErr, data) {
+            if(readErr) throw readErr;
+            res.end(data);
+        })
+    })
 })
 
 app.get("*", function(req, res){
