@@ -2,6 +2,7 @@ var express = require("express");
 var fs = require("fs");
 
 var app = express();
+var portNumber = 8888;
 
 //create a logger (export this to another file)
 function logger(req, res, next){
@@ -12,7 +13,9 @@ function logger(req, res, next){
 //middleware
 app.use(logger);
 app.use(express.bodyParser())
-app.use(express.static(__dirname + "/public"));
+app.use("/", express.static(__dirname + "/public/html"));
+app.use("/css", express.static(__dirname + "/public/css"));
+app.use("/js", express.static(__dirname + "/public/js"));
 
 //routing
 app.all("*", function(req, res, next){
@@ -47,5 +50,5 @@ app.get("*", function(req, res){
     res.end("404!");
 });
 
-app.listen(8888)
-console.log("Server is up on port 8888");
+app.listen(portNumber)
+console.log("Server is up on port " + portNumber);
