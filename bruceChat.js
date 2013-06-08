@@ -4,6 +4,8 @@ var app = express();
 
 //middleware
 app.use(express.logger());
+app.use(express.bodyParser())
+app.use(express.static(__dirname + "/public"));
 
 //routing
 app.all("*", function(req, res, next){
@@ -21,6 +23,12 @@ app.get("/about", function(req, res){
 
 app.get("/hello/:who", function(req, res){
     res.end("Hello " + req.params.who + ".");
+})
+
+app.post("/chat", function(req, res){
+    console.log(JSON.stringify(req.body));
+    
+    res.end(req.body.message);
 })
 
 app.get("*", function(req, res){
