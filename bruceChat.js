@@ -3,8 +3,14 @@ var fs = require("fs");
 
 var app = express();
 
+//create a logger (export this to another file)
+function logger(req, res, next){
+    console.log(req.method + " request from " + req.ip + " for " + req.url);
+    next();
+}
+
 //middleware
-app.use(express.logger());
+app.use(logger);
 app.use(express.bodyParser())
 app.use(express.static(__dirname + "/public"));
 
