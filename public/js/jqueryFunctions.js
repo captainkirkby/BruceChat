@@ -5,9 +5,24 @@ $(document).ready(function(){
 	});
 
 	$("#chatTextForm").submit(function(){
-		alert($("#chatTextInput").val());
+		var chatText = $("#chatTextInput").val();
+		alert(chatText);
+
 		//reload chat window
+		var jqXHR = $.ajax("/chat")
+		jqXHR.done(function(data){
+			$("#chatArea").replaceWith("<div id='chatArea'>" 
+			+ data + " </div>");
+		});
+
 		//send this data back to the server
+		$.ajax({
+			type : "POST",
+			data : {
+				"message" : chatText
+			}
+		});
+
 		//reset chatTextInput text
 		$("#chatTextInput").val("");
 		return false;
@@ -19,7 +34,7 @@ $(document).ready(function(){
 		jqXHR.done(function(data){
 			$("#chatArea").replaceWith("<div id='chatArea'>" 
 			+ data + " </div>");
-		})
+		});
 
 		//resets the previous hide chat area function to work with new chatArea
 		$("#chatArea").click(function(){
