@@ -35,11 +35,18 @@ app.get("/hello/:who", function(req, res){
     res.end("Hello " + req.params.who + ".");
 })
 
+app.get("/chat", function(req, res){
+    fs.readFile("chatText.chat", function(readErr, data){
+        if(readErr) throw readErr;
+        res.end(data);
+    })
+})
+
 app.post("/chat", function(req, res){
     console.log(JSON.stringify(req.body));
     fs.appendFile("chatText.chat", req.body.message + "\n", function(writeErr){
         if(writeErr) throw writeErr;
-        fs.readFile("chatText.chat", function(readErr, data) {
+        fs.readFile("chatText.chat", function(readErr, data){
             if(readErr) throw readErr;
             res.end(data);
         })
