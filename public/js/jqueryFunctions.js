@@ -4,10 +4,11 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	$("#chatTextInput").submit(function(){
-		alert("Submit!");
+	$("#chatTextForm").submit(function(){
+		alert($("#chatTextInput").val());
+		
 		return true;
-	})
+	});
 
 	//reloads the chat area
 	$("#reloadChat").click(function(){
