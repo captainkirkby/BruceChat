@@ -4,6 +4,11 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
+	$("form").submit(function(){
+		alert("Submit!");
+		return true;
+	})
+
 	//reloads the chat area
 	$("#reloadChat").click(function(){
 		var jqXHR = $.ajax("/chat")
