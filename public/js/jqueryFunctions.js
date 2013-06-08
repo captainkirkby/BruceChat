@@ -4,7 +4,7 @@ $(document).ready(function(){
 		$(this).hide();
 	});
 
-	$("form").submit(function(){
+	$("#chatTextInput").submit(function(){
 		alert("Submit!");
 		return true;
 	})
