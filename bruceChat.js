@@ -19,6 +19,10 @@ app.get("/about", function(req, res){
     res.end("About");
 });
 
+app.get("/hello/:who", function(req, res){
+    res.end("Hello " + req.params.who + ".");
+})
+
 app.get("*", function(req, res){
     res.end("404!");
 });
