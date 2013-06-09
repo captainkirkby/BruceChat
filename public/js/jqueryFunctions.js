@@ -1,14 +1,21 @@
+$.fn.reloadChatArea = function(){
+	//reloads the chat area
+	var jqXHR = $.ajax("/chat")
+	jqXHR.done(function(data){
+		$("#chatArea").replaceWith("<div id='chatArea'>" 
+		+ data + " </div>");
+	});
+}
+
 $(document).ready(function(){
+	$.fn.reloadChatArea();
+
 	$("#chatTextForm").submit(function(){
 		var chatText = $("#chatTextInput").val();
 		//alert(chatText);
 
-		//reload chat window
-		var jqXHR = $.ajax("/chat")
-		jqXHR.done(function(data){
-			$("#chatArea").replaceWith("<div id='chatArea'>" 
-			+ data + " </div>");
-		});
+		//reloads the chat area
+		$.fn.reloadChatArea();
 
 		//send this data back to the server
 		$.ajax({
@@ -23,10 +30,5 @@ $(document).ready(function(){
 		return false;
 	});
 
-	//reloads the chat area
-	var jqXHR = $.ajax("/chat")
-	jqXHR.done(function(data){
-		$("#chatArea").replaceWith("<div id='chatArea'>" 
-		+ data + " </div>");
-	});
+	setInterval($.fn.reloadChatArea, 500);
 });
