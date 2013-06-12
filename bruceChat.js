@@ -43,9 +43,21 @@ app.get("/chat", function(req, res){
 });
 
 app.post("/chat.html", function(req, res){
-    console.log(JSON.stringify(req.body));
-    fs.appendFile("chatText.chat", req.body.message + "\n", function(writeErr){
-        if(writeErr) throw writeErr;
+    fs.readFile("chatText.chat", "utf8", function(readErr, chatData){
+        if (readErr) throw readErr;
+        console.log(chatData);
+        var chat;
+        if(chatData !== ""){
+            chat = JSON.parse(chatData);
+        } else {
+            chat = JSON.parse("{}");
+        }
+        var timestamp = Date.now();
+        chat[timestamp] = req.body.message;
+        console.log(JSON.stringify(chat));
+        fs.writeFile("chatText.chat", JSON.stringify(chat) + "\n", function(writeErr){
+            if(writeErr) throw writeErr;
+        });
     });
 });
 

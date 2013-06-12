@@ -2,8 +2,20 @@ $.fn.reloadChatArea = (function(){
 	//reloads the chat area
 	var jqXHR = $.ajax("/chat");
 	jqXHR.done(function(data){
-		$("#chatArea").replaceWith("<div id='chatArea'>" +
-			data + " </div>");
+		var chatHTML = "";
+		chatHTML += "<div id='chatArea'>";
+		$.each(JSON.parse(data), function(key, value){
+			chatHTML += "<span class='sender'>";
+			chatHTML += value.sender;
+			chatHTML += ": ";
+			chatHTML += "</span>";
+			chatHTML += "<span class='message'>";
+			chatHTML += value.content;
+			chatHTML += "</span>";
+			chatHTML += "<br/>";
+		});
+		chatHTML += "</div>";
+		$("#chatArea").replaceWith(chatHTML);
 	});
 });
 
@@ -21,7 +33,10 @@ $(document).ready(function(){
 		$.ajax({
 			type : "POST",
 			data : {
-				"message" : chatText
+				"message" : {
+					"sender"	: "ME",
+					"content"	: chatText
+				}
 			}
 		});
 
