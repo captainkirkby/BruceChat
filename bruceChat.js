@@ -12,7 +12,7 @@ function logger(req, res, next){
 
 //middleware
 app.use(logger);
-app.use(express.bodyParser())
+app.use(express.bodyParser());
 app.use("/", express.static(__dirname + "/public/html"));
 app.use("/css", express.static(__dirname + "/public/css"));
 app.use("/js", express.static(__dirname + "/public/js"));
@@ -39,7 +39,7 @@ app.get("/chat", function(req, res){
     fs.readFile("chatText.chat", function(readErr, data){
         if(readErr) throw readErr;
         res.end(data);
-    })
+    });
 });
 
 app.post("/chat.html", function(req, res){
@@ -53,5 +53,5 @@ app.get("*", function(req, res){
     res.end("404!");
 });
 
-app.listen(portNumber)
+app.listen(portNumber);
 console.log("Server is up on port " + portNumber);
