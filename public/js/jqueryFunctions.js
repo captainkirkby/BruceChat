@@ -5,12 +5,14 @@ $.fn.reloadChatArea = (function(){
 		var chatHTML = "";
 		chatHTML += "<div id='chatArea'>";
 		$.each(JSON.parse(data), function(key, value){
-			chatHTML += "<span class='sender'>";
-			chatHTML += value.sender;
-			chatHTML += ": ";
-			chatHTML += "</span>";
 			chatHTML += "<span class='message'>";
-			chatHTML += value.content;
+				chatHTML += "<span class='sender'>";
+					chatHTML += value.sender;
+					chatHTML += ": ";
+				chatHTML += "</span>";
+				chatHTML += "<span class='message'>";
+					chatHTML += value.content;
+				chatHTML += "</span>";
 			chatHTML += "</span>";
 			chatHTML += "<br/>";
 		});
