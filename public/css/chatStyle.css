@@ -1,7 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
 #chatArea{
 	background-color: #EEEEEE;
 }
 
-.sender{
-	background-color: #999999;
+.message{
+	font-family: "Source Code Pro", sans-serif;
 }
