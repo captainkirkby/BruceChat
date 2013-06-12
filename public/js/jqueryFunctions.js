@@ -1,11 +1,11 @@
-$.fn.reloadChatArea = function(){
+$.fn.reloadChatArea = (function(){
 	//reloads the chat area
-	var jqXHR = $.ajax("/chat")
+	var jqXHR = $.ajax("/chat");
 	jqXHR.done(function(data){
-		$("#chatArea").replaceWith("<div id='chatArea'>" 
-		+ data + " </div>");
+		$("#chatArea").replaceWith("<div id='chatArea'>" +
+			data + " </div>");
 	});
-}
+});
 
 $(document).ready(function(){
 	$.fn.reloadChatArea();
